@@ -22,7 +22,7 @@ io.on('connection', function(socket) {
   });
 
   socket.on('mouse', function(pos) {
-    console.log('message: ' + pos);
+    if (pos.cmd === null) {
     mouse = robot.getMousePos();
     console.log("Mouse is at x:" + mouse.x + " y:" + mouse.y);
     newX = mouse.x + pos.x;
@@ -31,10 +31,12 @@ io.on('connection', function(socket) {
     robot.moveMouse(newX, newY);
     mouse = robot.getMousePos();
     console.log("after x:" + mouse.x + " y:" + mouse.y);
-    // mouse.mouseClick();
-    // mouse.typeString(msg);
-    //Press enter.
-    //mouse.keyTap("enter");
+    } else {
+      robot.mouseClick();
+      // robot.typeString(msg);
+      //Press enter.
+      // robot.keyTap("enter");
+    }
     // send to everyone
     io.emit('mouse', pos);
   });
