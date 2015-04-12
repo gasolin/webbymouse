@@ -1,0 +1,10 @@
+{
+  "name": "webby-mouse",
+  "version": "0.0.1",
+  "description": "air mouse and touchpad made by web technology",
+  "dependencies": {
+    "express": "^4.12.3",
+    "robotjs": "^0.1.1",
+    "socket.io": "^1.3.5"
+  }
+}

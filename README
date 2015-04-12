@@ -1,0 +1,19 @@
+Overview
+==========
+Air Mouse and touchpad with full web technology
+
+The server side `server.js` manage the mouse position change, the client side send position offset to server. 
+
+In client side `index.html`, just call emitMouse to update the mouse position.
+
+Setup
+-------
+
+Get required packages
+
+$ npm install
+
+Then run
+
+$ node server.js
+
