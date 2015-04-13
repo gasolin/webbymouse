@@ -12,10 +12,7 @@ var mouse = null;
 var newX = null;
 var newY = null;
 
-app.get('/', function(req, res) {
-  res.sendFile(__dirname + '/index.html');
-});
-app.use('/js', express.static('js'));
+app.use('/public', express.static('public'));
 
 io.on('connection', function(socket) {
   socket.broadcast.emit('hi');

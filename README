@@ -11,8 +11,10 @@ In client side `index.html`, just call emitMouse to update the mouse position.
 Get required packages
 
 $ npm install
+$ bower install
 
 Then run
 
 $ node server.js
+
 
