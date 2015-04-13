@@ -1,28 +1,25 @@
 <!doctype html>
 <html>
   <head>
-    <title>Socket.IO chat</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Webby Mouse</title>
     <style>
       * { margin: 0; padding: 0; box-sizing: border-box; }
       body { font: 13px Helvetica, Arial; }
-      form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
-      form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
-      form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
-      #messages { list-style-type: none; margin: 0; padding: 0; }
-      #messages li { padding: 5px 10px; }
-      #messages li:nth-child(odd) { background: #eee; }
+      .touchpad {position: fixed; display: block; width: 100%; height: 100%;};
     </style>
   </head>
   <body>
-    <ul id="messages"></ul>
-    <form action="">
-      <input id="m" autocomplete="off" /><button>Send</button>
-    </form>
+    <div id="touchpad" class="touchpad"></div>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/hammer.min.js"></script>
     <script>
+      var touchElem = document.getElementById('touchpad');
       var socket = io();
-      var temp = null;
+      var delta = null;
+      var moving = false;
 
       var pos = {x: 0, y: 0, cmd: null};
       /**
@@ -41,18 +38,32 @@
         socket.emit('mouse', pos);
       };
 
-      $('form').submit(function() {
-        temp = $('#m').val().split(',');
-        emitMouse(parseInt(temp[0]), parseInt(temp[1]), null);
-        $('#m').val(''); // clean up
-        return false;
-      });
-
       // receive msg
-      socket.on('mouse', function(msg) {
+      //socket.on('mouse', function(msg) {
         //console.log(msg);
-        $('#messages').append($('<li>').text(msg.x + ',' + msg.y));
+        //console.info(msg.x + ',' + msg.y);
+      //});
+
+      var hammer = new Hammer(touchElem);
+      hammer.get('pan').set({ direction: Hammer.DIRECTION_ALL });
+      hammer.on('panstart panend panup pandown panleft panright', function(e) {
+        if (e.type == 'panstart') {
+          delta = null;
+          moving = true;
+        }
+        if (e.type == 'panend') {
+          delta = null;
+          moving = false;
+        }
+        if (moving && delta != null) {
+          emitMouse(e.deltaX - delta.x, e.deltaY - delta.y, 'move');
+        }
+        delta = {x: e.deltaX, y: e.deltaY};
       });
+      hammer.on('tap', function(e) {
+        emitMouse(0, 0, 'tap');
+      });
+      
     </script>
   </body>
 </html>
