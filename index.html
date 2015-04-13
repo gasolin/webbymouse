@@ -49,11 +49,12 @@
           delta = null;
           moving = true;
           console.log('start ' + eventName);
-          console.log(e);
+          emitMouse(0, 0, eventName + 'start');
         }
         if (e.type == eventName + 'end') {
           delta = null;
           moving = false;
+          emitMouse(0, 0, eventName + 'end');
         }
         if (moving && delta != null) {
           emitMouse(e.deltaX - delta.x, e.deltaY - delta.y, eventName);

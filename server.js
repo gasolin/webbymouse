@@ -25,7 +25,7 @@ io.on('connection', function(socket) {
   });
 
   socket.on('mouse', function(pos) {
-    if (pos.cmd == 'move') {
+    if (pos.cmd == 'move' || pos.cmd == 'scroll' || pos.cmd == 'drag') {
       mouse = robot.getMousePos();
       //console.log("Mouse is at x:" + mouse.x + " y:" + mouse.y);
       newX = mouse.x + pos.x * adjustment;
@@ -43,6 +43,18 @@ io.on('connection', function(socket) {
     }
     else if (pos.cmd == 'rightclick') {
       robot.mouseClick('right');
+    }
+    else if (pos.cmd == 'scrollstart') {
+      robot.mouseToggle('down', 'middle');
+    }
+    else if (pos.cmd == 'scrollend') {
+      robot.mouseToggle('up', 'middle');
+    }
+    else if (pos.cmd == 'dragstart') {
+      robot.mouseToggle('down', 'left');
+    }
+    else if (pos.cmd == 'dragend') {
+      robot.mouseToggle('up', 'left');
     }
     // send to everyone
     //io.emit('mouse', pos);
