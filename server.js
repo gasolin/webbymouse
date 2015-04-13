@@ -7,7 +7,7 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var robot = require("robotjs");
 
-var adjustment = 1.5;
+var adjustment = 2;
 var mouse = null;
 var newX = null;
 var newY = null;
@@ -31,18 +31,21 @@ io.on('connection', function(socket) {
       newX = mouse.x + pos.x * adjustment;
       newY = mouse.y + pos.y * adjustment;
       //console.log('Offset is x:'+ newX + ' y:' + newY);
-      //robot.smoothlyMoveMouse(newX, newY);
+      //robot.moveMouseSmooth(newX, newY);
       robot.moveMouse(newX, newY);
       mouse = robot.getMousePos();
       //console.log("after x:" + mouse.x + " y:" + mouse.y);
-    } else if (pos.cmd == 'tap') {
+    } else if (pos.cmd == 'click') {
       robot.mouseClick();
       // robot.typeString(msg);
       //Press enter.
       // robot.keyTap("enter");
     }
+    else if (pos.cmd == 'rightclick') {
+      robot.mouseClick('right');
+    }
     // send to everyone
-    io.emit('mouse', pos);
+    //io.emit('mouse', pos);
   });
 });
 
