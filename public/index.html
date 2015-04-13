@@ -44,24 +44,46 @@
         //console.info(msg.x + ',' + msg.y);
       //});
 
-      var hammer = new Hammer(touchElem);
-      hammer.get('pan').set({ direction: Hammer.DIRECTION_ALL });
-      hammer.on('panstart panend panup pandown panleft panright', function(e) {
-        if (e.type == 'panstart') {
+      var handlePan = function(eventName, e) {
+        if (e.type == eventName + 'start') {
           delta = null;
           moving = true;
+          console.log('start ' + eventName);
+          emitMouse(0, 0, eventName + 'start');
         }
-        if (e.type == 'panend') {
+        if (e.type == eventName + 'end') {
           delta = null;
           moving = false;
+          emitMouse(0, 0, eventName + 'end');
         }
         if (moving && delta != null) {
-          emitMouse(e.deltaX - delta.x, e.deltaY - delta.y, 'move');
+          emitMouse(e.deltaX - delta.x, e.deltaY - delta.y, eventName);
         }
         delta = {x: e.deltaX, y: e.deltaY};
+      };
+
+      var mc = new Hammer.Manager(touchElem);
+      mc.add(new Hammer.Pan({ event: 'move', threshold: 0, pointers: 1, direction: Hammer.DIRECTION_ALL }));
+      mc.add(new Hammer.Pan({ event: 'scroll', threshold: 0, pointers: 2, direction: Hammer.DIRECTION_ALL }));
+      mc.add(new Hammer.Pan({ event: 'drag', threshold: 0, pointers: 3, direction: Hammer.DIRECTION_ALL }));
+      mc.add(new Hammer.Tap({ event: 'click', pointers: 1 }));
+      mc.add(new Hammer.Tap({ event: 'rightclick', pointers: 2 }));
+      mc.on('movestart moveend moveup movedown moveleft moveright', function(e) {
+        handlePan('move', e);
       });
-      hammer.on('tap', function(e) {
-        emitMouse(0, 0, 'tap');
+      mc.on('scrollstart scrollend scrollup scrolldown scrollleft scrollright', function(e) {
+        handlePan('scroll', e);
+      });
+      mc.on('dragstart dragend dragup dragdown dragleft dragright', function(e) {
+        handlePan('drag', e);
+      });
+      mc.on('click', function(e) {
+        console.info('click');
+        emitMouse(0, 0, 'click');
+      });
+      mc.on('rightclick', function(e) {
+        console.info('rightclick');
+        emitMouse(0, 0, 'rightclick');
       });
       
     </script>
