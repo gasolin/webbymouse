@@ -1,0 +1,18 @@
+{
+  "name": "webby-mouse",
+  "description": "",
+  "homepage": "",
+  "keywords": [],
+  "author": "",
+  "license": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "bootstrap-material-design": "^0.3.0",
+    "jquery": "~2.1.3",
+    "hammerjs": "~2.0.4"
+  }
+}
