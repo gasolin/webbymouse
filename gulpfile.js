@@ -72,7 +72,7 @@ gulp.task('lint', ['jsonlint', 'csslint', 'sloc-server', 'sloc-client'],
   function() {
     return gulp.src(lintSources)
       .pipe(jshint('.jshintrc'))
-      .pipe(jscs())
+      .pipe(jscs('.jscsrc'))
       .on('error', noop) // don't stop on error
       .pipe(stylish.combineWithHintResults())
       .pipe(jshint.reporter('default'));

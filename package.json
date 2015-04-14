@@ -15,6 +15,7 @@
     "gulp-jshint": "^1.10.0",
     "gulp-jsonlint": "^1.0.2",
     "gulp-rimraf": "^0.1.1",
-    "gulp-sloc": "^1.0.4"
+    "gulp-sloc": "^1.0.4",
+    "jscs-jsdoc": "^0.4.6"
   }
 }

@@ -5,7 +5,7 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-var robot = require("robotjs");
+var robot = require('robotjs');
 
 var adjustment = 2;
 var mouse = null;
@@ -37,20 +37,15 @@ io.on('connection', function(socket) {
       // robot.typeString(msg);
       //Press enter.
       // robot.keyTap("enter");
-    }
-    else if (pos.cmd == 'rightclick') {
+    } else if (pos.cmd == 'rightclick') {
       robot.mouseClick('right');
-    }
-    else if (pos.cmd == 'scrollstart') {
+    } else if (pos.cmd == 'scrollstart') {
       robot.mouseToggle('down', 'middle');
-    }
-    else if (pos.cmd == 'scrollend') {
+    } else if (pos.cmd == 'scrollend') {
       robot.mouseToggle('up', 'middle');
-    }
-    else if (pos.cmd == 'dragstart') {
+    } else if (pos.cmd == 'dragstart') {
       robot.mouseToggle('down', 'left');
-    }
-    else if (pos.cmd == 'dragend') {
+    } else if (pos.cmd == 'dragend') {
       robot.mouseToggle('up', 'left');
     }
     // send to everyone
@@ -59,7 +54,7 @@ io.on('connection', function(socket) {
 });
 
 var PORT = 8000;
-http.listen(PORT, function(){
+http.listen(PORT, function() {
   console.log('listening on *:' + PORT);
 });
 
