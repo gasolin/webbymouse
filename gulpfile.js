@@ -1,7 +1,7 @@
 /* jshint node: true */
 'use strict';
 var gulp = require('gulp');
-var clean = require('gulp-rimraf');
+var del = require('del');
 var jshint = require('gulp-jshint');
 var jscs = require('gulp-jscs');
 var noop = function() {};
@@ -58,11 +58,15 @@ gulp.task('sloc-server', function() {
     .pipe(sloc());
 });
 
-gulp.task('clean-dist', function() {
-  return gulp.src([options.param.dst, options.param.tmp,
-    options.param.build, options.param.pack, options.param.www,
-    'docs'], {read: false})
-    .pipe(clean());
+gulp.task('clean-dist', function(cb) {
+  del([
+    options.param.dst,
+    options.param.tmp,
+    options.param.build,
+    options.param.pack,
+    options.param.www,
+    'docs'
+  ], cb);
 });
 
 /**
