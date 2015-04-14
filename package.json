@@ -1,7 +1,28 @@
 {
   "name": "webby-mouse",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "air mouse and touchpad made by web technology",
+  "homepage": "https://github.com/gasolin/webbymouse",
+  "bugs": "https://github.com/gasolin/webbymouse/issues",
+  "author": {
+    "name": "Fred Lin (gasolin)",
+    "email": "gasolin@gmail.com",
+    "url": "http://www.gasolin.idv.tw"
+  },
+  "main": "public/desktop.html",
+  "window": {
+    "show": true,
+    "toolbar": false,
+    "frame": true,
+    "position": "center",
+    "width": 960,
+    "height": 640,
+    "min_width": 480,
+    "min_height": 320,
+    "resizable": true,
+    "kiosk": false
+  },
+  "chromium-args": "--child-clean-exit",
   "dependencies": {
     "express": "^4.12.3",
     "robotjs": "^0.1.1",
