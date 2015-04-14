@@ -9,7 +9,7 @@
     "email": "gasolin@gmail.com",
     "url": "http://www.gasolin.idv.tw"
   },
-  "main": "public/desktop.html",
+  "main": "desktop.html",
   "window": {
     "show": true,
     "toolbar": false,

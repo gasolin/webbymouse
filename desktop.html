@@ -1,0 +1,77 @@
+<DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Webby Mouse</title>
+    <meta name="description" content="">
+    <link rel="stylesheet" href="public/vendor/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="public/vendor/bootstrap-material-design/dist/css/ripples.min.css">
+    <link rel="stylesheet" href="public/vendor/bootstrap-material-design/dist/css/material.min.css">
+    <!-- build:css style/app.min.css -->
+    <link rel="stylesheet" href="public/style/main.css">
+    <!-- endbuild -->
+    <!-- <link rel="localization" href="locales/manifest.json"> -->
+
+    <!-- build:js js/app.min.js -->
+    <!-- <script defer src="vendor/l20n/l20n.min.js"></script> -->
+    <!-- endbuild -->
+  </head>
+  <body fullbleed unresolved class="hidden">
+    <header id="header" class="navbar navbar-fixed-top shadow-z-3">
+      <a class="navbar-brand" href="#" data-l10n-id="projectName">Webby Mouse</a>
+      <ul class="nav navbar-nav pull-left">
+      </ul>
+    </header>
+    <section id="content" class="well">
+      <!-- Add your site or application content here -->
+      <h3 data-l10n-id="hello">Open Mobile browser with</h3>
+      <p id="desc" data-l10n-id="info_static"></p>
+    </section>
+
+    <!-- build:js js/body.min.js -->
+    <!-- vendor libraries -->
+    <script defer src="public/vendor/jquery/dist/jquery.min.js"></script>
+    <script defer src="public/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script defer src="public/vendor/bootstrap-material-design/dist/js/ripples.min.js"></script>
+    <script defer src="public/vendor/bootstrap-material-design/dist/js/material.min.js"></script>
+    <!-- polyfill -->
+    <!--script defer src="public/vendor/localforage/dist/localforage.min.js"></script>
+    <script defer src="public/vendor/fetch/fetch.js"></script-->
+    <!-- custom script -->
+    <script defer src="public/js/main.js"></script>
+    <script type="text/javascript">
+      var server = require('./server.js');
+      var desc = document.getElementById('desc');
+      /*var os = require('os');
+      var ifaces = os.networkInterfaces();
+      var PORT = 8000;
+
+      Object.keys(ifaces).forEach(function (ifname) {
+        var alias = 0;
+
+        ifaces[ifname].forEach(function (iface) {
+          if ('IPv4' !== iface.family || iface.internal !== false) {
+            // skip over internal (i.e. 127.0.0.1) and non-ipv4 addresses
+            return;
+          }
+
+          if (alias >= 1) {
+            // this single interface has multiple ipv4 addresses
+            // console.log('ifname + ':' + alias, iface.address);
+            desc.innerHTML = 'http://' + iface.address + ':' + PORT;
+          } else {
+            // this interface has only one ipv4 adress
+            // console.log('listening on ' + ifname + ' ' + iface.address + ':' + PORT);
+            desc.innerHTML = 'http://' + iface.address + ':' + PORT;
+          }
+          alias++;
+        });
+      });*/
+    </script>
+
+    <!-- Debugger - remove for production -->
+    <!--<script defer src="https://getfirebug.com/firebug-lite.js"></script>-->
+  </body>
+</html>
+
+
