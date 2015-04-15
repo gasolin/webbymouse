@@ -9,6 +9,36 @@ The desktop side `desktop.html` includes `server.js` and provide the connection 
 In client side `index.html`, just call emitMouse to update the mouse position.
 
 
+## Mode
+
+### Touchpad mode
+
+* Use `Single finger touch` will let you move the mouse.
+* Use `Double finger touch` will let you scroll the content.
+* Use `Single finger tap` will let you simulate left click.
+* Use `Double finger tap` will let you simulate right click.
+
+### Air mouse mode
+
+TBD
+
+### Present mode
+
+TBD
+
+
+# How to Contribute
+
+Patch are welcome.
+
+## Technology used
+
+* Server: Express
+* Real time communication: socket.io
+* Desktop: Node Webkit
+* UI: Bootstrap CSS framework
+* Mobile accelerator: Cordova (plan)
+
 ## Setup
 
 Get required packages
@@ -19,15 +49,6 @@ $ bower install
 Then run
 
 $ node server.js
-
-## Mode
-
-## Touchpad mode
-
-Use Single finger touch will let you move the mouse.
-Use Double finger touch will let you scroll the content.
-Use Single tap will let you left click.
-Use Single tap will let you right click.
 
 ## Build for Desktop
 
@@ -48,11 +69,3 @@ $ nwbuild -p osx64 webbymouse
 
 Currently MacOS is the only support platform.
 
-
-## Technology used
-
-* Server: Express
-* Real time communication: socket.io
-* Desktop: Node Webkit
-* UI: Bootstrap CSS framework
-* Mobile accelerator: Cordova (plan)
