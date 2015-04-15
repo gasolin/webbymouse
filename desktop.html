@@ -80,17 +80,39 @@
       win.on('minimize', function() {
         // Hide window
         this.hide();
-
-        // Show tray
-        tray = new gui.Tray({ icon: 'public/style/icons/favicon.ico' });
-
-        // Show window and remove tray when clicked
-        tray.on('click', function() {
-          win.show();
-          this.remove();
-          tray = null;
-        });
       });
+
+      // Show tray
+      tray = new gui.Tray({
+        tooltip: 'Webby Mouse',
+        icon: 'public/style/icons/favicon.ico'
+      });
+
+      var menu = new gui.Menu();
+      menu.append(new gui.MenuItem({
+        label: 'About Webby Mouse',
+        click: function() {
+          if(confirm('Air mouse made with full web technology.\n' +
+            'Visit our web site for more information?')) {
+            gui.Shell.openExternal('https://github.com/gasolin/webbymouse');
+          }
+        }
+      }));
+      menu.append(new gui.MenuItem({ type: 'separator' }));
+      menu.append(new gui.MenuItem({
+        label: 'Show',
+        click: function() {
+          win.show();
+        }
+      }));
+      menu.append(new gui.MenuItem({ type: 'separator' }));
+      menu.append(new gui.MenuItem({
+        label: 'Close',
+        click: function() {
+          win.close();
+        }
+      }));
+      tray.menu = menu;
     </script>
 
     <!-- Debugger - remove for production -->
