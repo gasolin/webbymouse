@@ -36,7 +36,7 @@ To build a smaller package, we only need install essential libraries for product
 Clone a new repository and run following commands:
 
 $ npm install --production
-$ nwbuild -p osx64 webbymouse2
+$ nwbuild -p osx64 webbymouse
 
 Currently MacOS is the only support platform.
 
