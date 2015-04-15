@@ -20,6 +20,14 @@ Then run
 
 $ node server.js
 
+## Mode
+
+## Touchpad mode
+
+Use Single finger touch will let you move the mouse.
+Use Double finger touch will let you scroll the content.
+Use Single tap will let you left click.
+Use Single tap will let you right click.
 
 ## Build for Desktop
 
