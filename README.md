@@ -8,6 +8,7 @@ The desktop side `desktop.html` includes `server.js` and provide the connection 
 
 In client side `index.html`, just call emitMouse to update the mouse position.
 
+
 ## Setup
 
 Get required packages
@@ -39,3 +40,11 @@ $ nwbuild -p osx64 webbymouse2
 
 Currently MacOS is the only support platform.
 
+
+## Technology used
+
+* Server: Express
+* Real time communication: socket.io
+* Desktop: Node Webkit
+* UI: Bootstrap CSS framework
+* Mobile accelerator: Cordova (plan)
