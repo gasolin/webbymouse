@@ -39,9 +39,14 @@
     <!-- custom script -->
     <script defer src="public/js/main.js"></script>
     <script type="text/javascript">
+      // enable server
       var server = require('./server.js');
-      var desc = document.getElementById('desc');
+      var gui = require('nw.gui');
       var os = require('os');
+
+      var desc = document.getElementById('desc');
+
+      // show ip address
       var ifaces = os.networkInterfaces();
       var PORT = 8000;
 
@@ -64,6 +69,26 @@
             desc.innerHTML = 'http://' + iface.address + ':' + PORT;
           }
           alias++;
+        });
+      });
+
+      // Reference to window and tray
+      var win = gui.Window.get();
+      var tray;
+
+      // Get the minimize event
+      win.on('minimize', function() {
+        // Hide window
+        this.hide();
+
+        // Show tray
+        tray = new gui.Tray({ icon: 'public/style/icons/favicon.ico' });
+
+        // Show window and remove tray when clicked
+        tray.on('click', function() {
+          win.show();
+          this.remove();
+          tray = null;
         });
       });
     </script>
