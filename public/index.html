@@ -23,7 +23,7 @@
   </head>
   <body>
     <header id="header" class="navbar navbar-fixed-top shadow-z-3">
-      <a class="navbar-brand" href="#" data-l10n-id="projectName">Webby Mouse</a>
+      <a id="title" class="navbar-brand" href="#" data-l10n-id="projectName">Webby Mouse</a>
       <ul class="nav navbar-nav pull-left">
         <!--li class="active"><a href="#mouse">Mouse</a></li-->
         <!--li><a href="#air">AirMouse</a></li-->
@@ -35,11 +35,14 @@
     <script src="/public/vendor/hammerjs/hammer.min.js"></script>
     <script>
       var touchElem = document.getElementById('touchpad');
+      var title = document.getElementById('title');
       var socket = io();
       var delta = null;
       var moving = false;
+      var isAirMouseMode = false;
 
       var pos = {x: 0, y: 0, cmd: null};
+      var orient = {alpha: 0, beta: 0, gamma: 0};
       /**
        * pass `pos` object to socket.emit('mouse', pos) function
        *
@@ -62,6 +65,7 @@
         //console.info(msg.x + ',' + msg.y);
       //});
 
+      /* Touchpad mode */
       var handlePan = function(eventName, e) {
         if (e.type == eventName + 'start') {
           delta = null;
@@ -86,6 +90,7 @@
       mc.add(new Hammer.Pan({ event: 'drag', threshold: 0, pointers: 3, direction: Hammer.DIRECTION_ALL }));
       mc.add(new Hammer.Tap({ event: 'click', pointers: 1 }));
       mc.add(new Hammer.Tap({ event: 'rightclick', pointers: 2 }));
+
       mc.on('movestart moveend moveup movedown moveleft moveright', function(e) {
         handlePan('move', e);
       });
@@ -104,6 +109,45 @@
         emitMouse(0, 0, 'rightclick');
       });
       
+      /* AirMousese mode */
+      mc.add(new Hammer.Press({ event: 'press', threshold: 5, pointers: 1, time: 500}));
+      mc.add(new Hammer.Press({ event: 'pressup', threshold: 5, pointers: 1, time: 500}));
+
+      mc.on('press', function(e) {
+        console.info('air mouse');
+        window.addEventListener('deviceorientation', handleOrientation);
+      });
+
+      mc.on('pressup', function(e) {
+        console.info('air mouse disabled');
+        // reset default values
+        window.removeEventListener('deviceorientation', handleOrientation);
+        isAirMouseMode = false;
+        orient.alpha = 0;
+        orient.beta = 0;
+        orient.gamma = 0;
+      });
+
+      // Because we don't want to have the device upside down
+      // We constrain the x value to the range [-90,90]
+      var Rectifier = function Rectifier(x) {
+        if (x >  90) {x =  90};
+        if (x < -90) {x = -90};
+        return x;
+      };
+
+      var handleOrientation = function handleOrientation(event) {
+        if (!isAirMouseMode) {
+          orient.beta = event.beta;//Rectifier(event.alpha);
+          orient.gamma = event.gamma;
+          isAirMouseMode = true;
+        } else {
+          var x = event.beta;//Rectifier(event.alpha);  // In degree in the range [-180,180]
+          var y = event.gamma; // In degree in the range [-90,90]
+          title.innerHTML = 'x:' + event.beta + 'y:' + event.gamma + 'z:' + event.alpha;
+          emitMouse(x - orient.beta, y - orient.gamma, 'air');
+        }
+      }
     </script>
   </body>
 </html>
