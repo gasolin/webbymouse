@@ -39,6 +39,7 @@ If you feel Webby Mouse is useful, please spread the word on social media!
 * Desktop
   * Application packager: [NW.js](https://github.com/nwjs/nw.js/) (Node Webkit)
   * Mouse action: [RobotJS](https://github.com/octalmage/robotjs/)
+  * QRCode: [jquery qrcode](https://github.com/jeromeetienne/jquery-qrcode)
 * Client
   * Touch detection: [HammerJs](http://hammerjs.github.io/)
   * Mobile accelerator: [DeviceOrientation](http://caniuse.com/#feat=deviceorientation)
