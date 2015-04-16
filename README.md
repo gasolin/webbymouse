@@ -34,11 +34,18 @@ If you feel Webby Mouse is useful, please spread the word on social media!
 
 ## Technology used
 
-* Server: Express
-* Real time communication: socket.io
-* Desktop: Node Webkit
-* UI: Bootstrap CSS framework
-* Mobile accelerator: Cordova (plan)
+* Server
+  * [Express](http://expressjs.com/)
+* Desktop
+  * Application packager: [NW.js](https://github.com/nwjs/nw.js/) (Node Webkit)
+  * Mouse action: [RobotJS](https://github.com/octalmage/robotjs/)
+* Client
+  * Touch detection: [HammerJs](http://hammerjs.github.io/)
+  * Mobile accelerator: [DeviceOrientation](http://caniuse.com/#feat=deviceorientation)
+* Shared
+  * App Template: [Webapplate](https://github.com/webapplate/webapplate)
+  * UI: [Bootstrap](https://github.com/twbs/bootstrap) CSS framework
+  * Real time communication: [socket.io](http://socket.io/)
 
 ## Setup
 
