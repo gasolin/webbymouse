@@ -1,3 +1,5 @@
+/* jshint node: true */
+/* global io, Hammer */
 'use strict';
 
 var touchElem = document.getElementById('touchpad');
@@ -24,8 +26,8 @@ var emitMouse = function(x, y, cmd) {
 
 // receive msg
 //socket.on('mouse', function(msg) {
-  //console.log(msg);
-  //console.info(msg.x + ',' + msg.y);
+//console.log(msg);
+//console.info(msg.x + ',' + msg.y);
 //});
 
 var handlePan = function(eventName, e) {
@@ -47,17 +49,21 @@ var handlePan = function(eventName, e) {
 };
 
 var mc = new Hammer.Manager(touchElem);
-mc.add(new Hammer.Pan({ event: 'move', threshold: 0, pointers: 1, direction: Hammer.DIRECTION_ALL }));
-mc.add(new Hammer.Pan({ event: 'scroll', threshold: 0, pointers: 2, direction: Hammer.DIRECTION_ALL }));
-mc.add(new Hammer.Pan({ event: 'drag', threshold: 0, pointers: 3, direction: Hammer.DIRECTION_ALL }));
-mc.add(new Hammer.Tap({ event: 'click', pointers: 1 }));
-mc.add(new Hammer.Tap({ event: 'rightclick', pointers: 2 }));
+mc.add(new Hammer.Pan({event: 'move', threshold: 0, pointers: 1,
+  direction: Hammer.DIRECTION_ALL}));
+mc.add(new Hammer.Pan({event: 'scroll', threshold: 0, pointers: 2,
+  direction: Hammer.DIRECTION_ALL}));
+mc.add(new Hammer.Pan({event: 'drag', threshold: 0, pointers: 3,
+  direction: Hammer.DIRECTION_ALL}));
+mc.add(new Hammer.Tap({event: 'click', pointers: 1}));
+mc.add(new Hammer.Tap({event: 'rightclick', pointers: 2}));
 mc.on('movestart moveend moveup movedown moveleft moveright', function(e) {
   handlePan('move', e);
 });
-mc.on('scrollstart scrollend scrollup scrolldown scrollleft scrollright', function(e) {
-  handlePan('scroll', e);
-});
+mc.on('scrollstart scrollend scrollup scrolldown scrollleft scrollright',
+  function(e) {
+    handlePan('scroll', e);
+  });
 mc.on('dragstart dragend dragup dragdown dragleft dragright', function(e) {
   handlePan('drag', e);
 });

@@ -1,8 +1,10 @@
-'use restrict';
+/* jshint node: true */
+/* global $ */
+'use strict';
 
 $(document).ready(function() {
   // enable server
-  var server = require('./server.js');
+  require('./server.js');
   var gui = require('nw.gui');
   var os = require('os');
 
@@ -13,10 +15,10 @@ $(document).ready(function() {
   var PORT = 8000;
 
   var url = '';
-  Object.keys(ifaces).forEach(function (ifname) {
+  Object.keys(ifaces).forEach(function(ifname) {
     var alias = 0;
 
-    ifaces[ifname].forEach(function (iface) {
+    ifaces[ifname].forEach(function(iface) {
       if ('IPv4' !== iface.family || iface.internal !== false) {
         // skip over internal (i.e. 127.0.0.1) and non-ipv4 addresses
         return;
@@ -29,7 +31,8 @@ $(document).ready(function() {
         desc.innerHTML = url;
       } else {
         // this interface has only one ipv4 adress
-        // console.log('listening on ' + ifname + ' ' + iface.address + ':' + PORT);
+        // console.log('listening on ' + ifname + ' ' +
+        //   iface.address + ':' + PORT);
         url = 'http://' + iface.address + ':' + PORT;
         desc.innerHTML = url;
       }
@@ -37,7 +40,7 @@ $(document).ready(function() {
     });
   });
   // show QRCode
-  $('#qrcode').qrcode({width: 128,height: 128,text: url});
+  $('#qrcode').qrcode({width: 128, height: 128, text: url});
 
   // Reference to window and tray
   var win = gui.Window.get();
@@ -59,20 +62,20 @@ $(document).ready(function() {
   menu.append(new gui.MenuItem({
     label: 'About Webby Mouse',
     click: function() {
-      if(confirm('Webby Mouse: Air mouse made with full web technology.\n' +
+      if (confirm('Webby Mouse: Air mouse made with full web technology.\n' +
         'Visit our web site for more information?')) {
         gui.Shell.openExternal('https://github.com/gasolin/webbymouse');
       }
     }
   }));
-  menu.append(new gui.MenuItem({ type: 'separator' }));
+  menu.append(new gui.MenuItem({type: 'separator'}));
   menu.append(new gui.MenuItem({
     label: 'Show',
     click: function() {
       win.show();
     }
   }));
-  menu.append(new gui.MenuItem({ type: 'separator' }));
+  menu.append(new gui.MenuItem({type: 'separator'}));
   menu.append(new gui.MenuItem({
     label: 'Close',
     click: function() {
