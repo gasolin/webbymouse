@@ -134,12 +134,9 @@ window.addEventListener("deviceorientation", function (e) {
     if (control == "motion") {
         var x = e.gamma;
         var y = e.beta;
-        if (y > 90) {
-            y = 90
-        }
-        if (y < -90) {
-            y = -90
-        }
+        y = (y > 90) ? 90 : y;
+        y = (y < -90) ? -90 : y;
+
         x += 90;
         y += 90;
         emitMouse(x, y, 'motion')
