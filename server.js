@@ -8,8 +8,8 @@ var io = require('socket.io')(http);
 var robot = require('robotjs');
 
 //TODO: detect screensize
-var screenWidth=1440;
-var screenHeight=900;
+var screenWidth = 1440;
+var screenHeight = 900;
 var adjustment = 2;
 
 var mouse = null;
@@ -49,7 +49,7 @@ io.on('connection', function(socket) {
       y = (y > 165) ? 165 : y;
       x -= 45;
       y -= 105;
-      robot.moveMouse(screenWidth/90*x, screenHeight/60*y);
+      robot.moveMouse(screenWidth / 90 * x, screenHeight / 60 * y);
     } else if (pos.cmd == 'click') {
       robot.mouseClick();
       // robot.typeString(msg);
