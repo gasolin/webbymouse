@@ -45,11 +45,11 @@ io.on('connection', function(socket) {
       var y = pos.y;
       x = (x < 45) ? 45 : x;
       x = (x > 135) ? 135 : x;
-      y = (y < 45) ? 45 : y;
-      y = (y > 135) ? 135 : y;
+      y = (y < 105) ? 105 : y;
+      y = (y > 165) ? 165 : y;
       x -= 45;
-      y -= 45;
-      robot.moveMouse(screenWidth/90*x, screenHeight/90*y);
+      y -= 105;
+      robot.moveMouse(screenWidth/90*x, screenHeight/60*y);
     } else if (pos.cmd == 'click') {
       robot.mouseClick();
       // robot.typeString(msg);

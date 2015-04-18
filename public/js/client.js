@@ -6,7 +6,7 @@ var touchElem = document.getElementById('touchpad');
 var socket = io();
 var delta = null;
 var moving = false;
-var orientation = "portrait";
+var ori = "portrait";
 var control = "touch";
 
 var pos = {x: 0, y: 0, cmd: null};
@@ -81,7 +81,7 @@ mc.on('rightclick', function (e) {
 });
 
 document.body.requestFullscreen = document.body.requestFullScreen || document.body.webkitRequestFullScreen || document.body.mozRequestFullScreen || document.body.msRequestFullScreen;
-document.cancelFullscreen = document.exitFullscreen || document.webkitExitfullScreen || document.mozCancelFullScreen || document.msExitFullscreen;
+document.cancelFullscreen = document.exitFullscreen || document.webkitExitFullscreen || document.mozCancelFullScreen || document.msExitFullscreen;
 
 $('#fullscreen-toggle').click(function () {
     if (this.checked) {
@@ -95,8 +95,12 @@ $('#fullscreen-toggle').click(function () {
 var lockOrientation = function () {
     if (document.fullscreen) {
         screen.lockOrientation = screen.lockOrientation || screen.mozLockOrientation || screen.msLockOrientation;
-
-        return screen.lockOrientation(orientation + '-primary');
+        if (screen.lockOrientation) {
+            return screen.lockOrientation(ori + '-primary');
+        }
+        else {
+            return screen.orientation.lock(ori + '-primary');
+        }
     }
 };
 
@@ -107,11 +111,11 @@ $(window).on('fullscreenchange mozfullscreenchange webkitfullscreenchange msfull
 });
 
 $('#portrait').click(function () {
-    orientation = "portrait";
+    ori = "portrait";
     lockOrientation();
 });
 $('#landscape').click(function () {
-    orientation = "landscape";
+    ori = "landscape";
     lockOrientation();
 });
 $('#touch-ctrl').click(function () {
