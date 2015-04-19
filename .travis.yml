@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+  - "0.12"
+  - "iojs"
+  - "0.10"
+script:
+  - npm install -g bower
+  - $CI_ACTION
+env:
+  matrix:
+  - CI_ACTION="gulp lint"

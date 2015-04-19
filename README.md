@@ -1,6 +1,6 @@
 Air Mouse and touchpad with full web technology
 
-[![david-dm](https://david-dm.org/gasolin/webbymouse.png)](https://david-dm.org/gasolin/webbymouse) [![devDependency Status](https://david-dm.org/gasolin/webbymouse/dev-status.svg)](https://david-dm.org/gasolin/webbymouse#info=devDependencies)
+[![Build Status](https://travis-ci.org/gasolin/webbymouse.png)](https://travis-ci.org/gasolin/webbymouse) [![david-dm](https://david-dm.org/gasolin/webbymouse.png)](https://david-dm.org/gasolin/webbymouse) [![devDependency Status](https://david-dm.org/gasolin/webbymouse/dev-status.svg)](https://david-dm.org/gasolin/webbymouse#info=devDependencies)
 
 # Overview
 
@@ -56,14 +56,18 @@ Get required packages
 
 ```
 $ npm install
-$ bower install
 ```
+
+Which will also run `bower install` to install related client side libraries into `public/vendor` folder.
 
 Then run
 
 ```
 $ node server.js
 ```
+
+To host the mouse server on desktop.
+
 
 ## Build for Desktop
 
