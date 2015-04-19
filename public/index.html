@@ -24,32 +24,40 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
+          <!-- <i class="mdi-navigation-menu"></i> -->
         </button>
         <a class="navbar-brand" href="#" data-l10n-id="projectName">Webby Mouse</a>
       </div>
       <div class="collapse navbar-collapse" id="pushMenu">
         <ul class="nav navbar-nav">
           <li>
+            <div class="togglebutton">
             <label class="navbar-item">
-            <input type="checkbox" name="checkbox" id="fullscreen-toggle" autocomplete="off"> Fullscreen
+            <input type="checkbox" name="checkbox" id="fullscreen-toggle" autocomplete="off"></input>
+            Fullscreen <span class="toggle pull-right"></span>
+            </label>
+            </div>
+          </li>
+          <li class="divider"><hr></li>
+          <li>
+            <label class="navbar-item2">
+            <input type="radio" name="orientations" id="portrait" autocomplete="off" checked></input>
+            <i class="mdi-communication-stay-current-portrait"></i> Portrait
+            </label>
+            <label class="navbar-item2 pull-right">
+            <input type="radio" name="orientations" id="landscape" autocomplete="off"></input>
+            <i class="mdi-communication-stay-current-landscape"></i> Landscape
             </label>
           </li>
           <li class="divider"><hr></li>
           <li>
             <label class="navbar-item2">
-            <input type="radio" name="orientations" id="portrait" autocomplete="off" checked> Portrait
+            <input type="radio" name="controls" id="touch-ctrl" autocomplete="off" checked>
+            <i class="mdi-hardware-mouse"></i> Touch Control
             </label>
-            <label class="navbar-item2">
-            <input type="radio" name="orientations" id="landscape" autocomplete="off"> Landscape
-            </label>
-          </li>
-          <li class="divider"><hr></li>
-          <li>
-            <label class="navbar-item2">
-            <input type="radio" name="controls" id="touch-ctrl" autocomplete="off" checked> Touch Control
-            </label>
-            <label class="navbar-item2">
-            <input type="radio" name="controls" id="motion-ctrl" autocomplete="off"> Motion Control
+            <label class="navbar-item2 pull-right">
+            <input type="radio" name="controls" id="motion-ctrl" autocomplete="off">
+            <i class="mdi-maps-my-location"></i> Motion Control
             </label>
           </li>
           <li class="divider"><hr></li>
