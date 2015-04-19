@@ -1,11 +1,13 @@
 /* jshint node: true */
-/* global io, Hammer */
+/* global io, Hammer, $ */
 'use strict';
 
 var touchElem = document.getElementById('touchpad');
 var socket = io();
 var delta = null;
 var moving = false;
+var ori = 'portrait';
+var control = 'touch';
 
 var pos = {x: 0, y: 0, cmd: null};
 /**
@@ -58,7 +60,9 @@ mc.add(new Hammer.Pan({event: 'drag', threshold: 0, pointers: 3,
 mc.add(new Hammer.Tap({event: 'click', pointers: 1}));
 mc.add(new Hammer.Tap({event: 'rightclick', pointers: 2}));
 mc.on('movestart moveend moveup movedown moveleft moveright', function(e) {
-  handlePan('move', e);
+  if (control == 'touch') {
+    handlePan('move', e);
+  }
 });
 mc.on('scrollstart scrollend scrollup scrolldown scrollleft scrollright',
   function(e) {
@@ -76,3 +80,72 @@ mc.on('rightclick', function(e) {
   emitMouse(0, 0, 'rightclick');
 });
 
+document.body.requestFullscreen = document.body.requestFullScreen ||
+  document.body.webkitRequestFullScreen ||
+  document.body.mozRequestFullScreen ||
+  document.body.msRequestFullScreen;
+document.cancelFullscreen = document.exitFullscreen ||
+  document.webkitExitFullscreen ||
+  document.mozCancelFullScreen ||
+  document.msExitFullscreen;
+
+$('#fullscreen-toggle').click(function() {
+  if (this.checked) {
+    document.body.requestFullscreen();
+  } else {
+    document.cancelFullscreen();
+  }
+});
+
+var lockOrientation = function() {
+  if (document.fullscreen) {
+    screen.lockOrientation = screen.lockOrientation ||
+      screen.mozLockOrientation || screen.msLockOrientation;
+    if (screen.lockOrientation) {
+      return screen.lockOrientation(ori + '-primary');
+    } else {
+      return screen.orientation.lock(ori + '-primary');
+    }
+  }
+};
+
+$(window).on('fullscreenchange mozfullscreenchange webkitfullscreenchange ' +
+  'msfullscreenchange', function() {
+  document.fullscreen = (document.mozFullScreen ||
+    document.webkitIsFullScreen || document.msFullscreen) === true;
+  $('#fullscreen-toggle').prop('checked', document.fullscreen);
+  lockOrientation();
+});
+
+$('#portrait').click(function() {
+  ori = 'portrait';
+  lockOrientation();
+});
+$('#landscape').click(function() {
+  ori = 'landscape';
+  lockOrientation();
+});
+$('#touch-ctrl').click(function() {
+  if (this.checked) {
+    control = 'touch';
+  }
+});
+
+$('#motion-ctrl').click(function() {
+  if (this.checked) {
+    control = 'motion';
+  }
+});
+
+window.addEventListener('deviceorientation', function(e) {
+  if (control == 'motion') {
+    var x = e.gamma;
+    var y = e.beta;
+    y = (y > 90) ? 90 : y;
+    y = (y < -90) ? -90 : y;
+
+    x += 90;
+    y += 90;
+    emitMouse(x, y, 'motion');
+  }
+});

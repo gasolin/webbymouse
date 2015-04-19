@@ -7,7 +7,11 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var robot = require('robotjs');
 
+//TODO: detect screensize
+var screenWidth = 1440;
+var screenHeight = 900;
 var adjustment = 2;
+
 var mouse = null;
 var newX = null;
 var newY = null;
@@ -36,6 +40,16 @@ io.on('connection', function(socket) {
       robot.moveMouse(newX, newY);
       mouse = robot.getMousePos();
       //console.log("after x:" + mouse.x + " y:" + mouse.y);
+    } else if (pos.cmd == 'motion') {
+      var x = pos.x;
+      var y = pos.y;
+      x = (x < 45) ? 45 : x;
+      x = (x > 135) ? 135 : x;
+      y = (y < 105) ? 105 : y;
+      y = (y > 165) ? 165 : y;
+      x -= 45;
+      y -= 105;
+      robot.moveMouse(screenWidth / 90 * x, screenHeight / 60 * y);
     } else if (pos.cmd == 'click') {
       robot.mouseClick();
       // robot.typeString(msg);

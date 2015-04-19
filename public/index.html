@@ -6,11 +6,6 @@
     <link rel="stylesheet" href="public/vendor/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="public/vendor/bootstrap-material-design/dist/css/ripples.min.css">
     <link rel="stylesheet" href="public/vendor/bootstrap-material-design/dist/css/material.min.css">
-    <style>
-      * { margin: 0; padding: 0; box-sizing: border-box; }
-      body { font: 13px Helvetica, Arial; }
-      .touchpad {position: fixed; display: block; width: 100%; height: calc(100% - 50px);};
-    </style>
     <!-- build:css style/app.min.css -->
     <link rel="stylesheet" href="public/style/main.css">
     <!-- endbuild -->
@@ -34,9 +29,31 @@
       </div>
       <div class="collapse navbar-collapse" id="pushMenu">
         <ul class="nav navbar-nav">
+          <li>
+            <label class="navbar-item">
+            <input type="checkbox" name="checkbox" id="fullscreen-toggle" autocomplete="off"> Fullscreen
+            </label>
+          </li>
+          <li class="divider"><hr></li>
+          <li>
+            <label class="navbar-item2">
+            <input type="radio" name="orientations" id="portrait" autocomplete="off" checked> Portrait
+            </label>
+            <label class="navbar-item2">
+            <input type="radio" name="orientations" id="landscape" autocomplete="off"> Landscape
+            </label>
+          </li>
+          <li class="divider"><hr></li>
+          <li>
+            <label class="navbar-item2">
+            <input type="radio" name="controls" id="touch-ctrl" autocomplete="off" checked> Touch Control
+            </label>
+            <label class="navbar-item2">
+            <input type="radio" name="controls" id="motion-ctrl" autocomplete="off"> Motion Control
+            </label>
+          </li>
+          <li class="divider"><hr></li>
           <li><a href="#">About</a></li>
-          <!--li class="active"><a href="#mouse">Mouse</a></li-->
-          <!--li><a href="#air">AirMouse</a></li-->
         </ul>
       </div>
     </header>
