@@ -7,11 +7,23 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var robot = require('robotjs');
 
-//TODO: detect screensize
 var screenWidth = 1440;
 var screenHeight = 900;
-var adjustment = 2;
 
+// Get screen size from NW desktop
+try {
+  var gui = window.require('nw.gui');
+  gui.Screen.Init();
+  var screens = gui.Screen.screens;
+  // XXX: only take first screen
+  var rect = screens[0].bounds;
+  screenWidth = rect.width;
+  screenHeight = rect.height;
+} catch(e) {
+  console.log(e);
+}
+
+var adjustment = 2;
 var mouse = null;
 var newX = null;
 var newY = null;

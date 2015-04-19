@@ -39,6 +39,7 @@ $(document).ready(function() {
       alias++;
     });
   });
+
   // show QRCode
   $('#qrcode').qrcode({width: 128, height: 128, text: url});
 
