@@ -9,30 +9,14 @@ mark {
     display: none;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
 body {
-    font: 13px Helvetica, Arial;
     padding-top: 50px;
 }
-
-hr {
-    margin-top: 0;
-    margin-bottom: 0;
-}
-
 @media screen and (max-width: 768px) {
     body {
         padding-top: 50px;
     }
-}
-
-.navbar {
-    margin-bottom: 0;
 }
 
 .touchpad {
@@ -44,15 +28,7 @@ hr {
 
 .navbar-item {
     display: block;
-    padding: 15px;
+    padding: 5px 5px;
     clear: both;
     font-weight: 400;
-    line-height: 1.42857143;
-}
-.navbar-item2 {
-    display: inline-block;
-    width: 50%;
-    padding: 15px 0 15px 15px;
-    font-weight: 400;
-    line-height: 1.42857143;
 }

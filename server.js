@@ -19,7 +19,7 @@ try {
   var rect = screens[0].bounds;
   screenWidth = rect.width;
   screenHeight = rect.height;
-} catch(e) {
+} catch (e) {
   console.log(e);
 }
 
@@ -29,7 +29,7 @@ var newX = null;
 var newY = null;
 
 app.get('/', function(req, res) {
-  res.sendFile(__dirname + '/public/index.html');
+  res.sendFile(__dirname + '/public/client.html');
 });
 
 app.use('/public', express.static('public'));

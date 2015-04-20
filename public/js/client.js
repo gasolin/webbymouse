@@ -155,6 +155,13 @@ $('#motion-ctrl').click(function() {
   $('#motion-ctrl').addClass('active');
 });
 
+$('#about').click(function() {
+  if (confirm('Webby Mouse: Air mouse made with full web technology.\n' +
+    'Visit our web site for more information?')) {
+    open('https://github.com/gasolin/webbymouse');
+  }
+});
+
 window.addEventListener('deviceorientation', function(e) {
   if (control == 'motion') {
     var x = e.gamma;
