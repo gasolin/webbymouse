@@ -143,14 +143,16 @@ $('#landscape').click(function() {
 
 // modes
 $('#touch-ctrl').click(function() {
-  if (this.checked) {
-    control = 'touch';
-  }
+  control = 'touch';
+  // update menu
+  $('#touch-ctrl').addClass('active');
+  $('#motion-ctrl').removeClass('active');
 });
 $('#motion-ctrl').click(function() {
-  if (this.checked) {
-    control = 'motion';
-  }
+  control = 'motion';
+  // update menu
+  $('#touch-ctrl').removeClass('active');
+  $('#motion-ctrl').addClass('active');
 });
 
 window.addEventListener('deviceorientation', function(e) {
