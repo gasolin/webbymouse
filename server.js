@@ -15,7 +15,7 @@ try {
   var gui = window.require('nw.gui');
   gui.Screen.Init();
   var screens = gui.Screen.screens;
-  // XXX: only take first screen
+  // XXX: currently only take first screen
   var rect = screens[0].bounds;
   screenWidth = rect.width;
   screenHeight = rect.height;

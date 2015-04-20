@@ -80,6 +80,7 @@ mc.on('rightclick', function(e) {
   emitMouse(0, 0, 'rightclick');
 });
 
+// menu functions
 document.body.requestFullscreen = document.body.requestFullScreen ||
   document.body.webkitRequestFullScreen ||
   document.body.mozRequestFullScreen ||
@@ -101,11 +102,24 @@ var lockOrientation = function() {
   if (document.fullscreen) {
     screen.lockOrientation = screen.lockOrientation ||
       screen.mozLockOrientation || screen.msLockOrientation;
+    // update menu
+    if (ori === 'portrait') {
+      $('#portrait').removeClass('hidden');
+      $('#landscape').addClass('hidden');
+    } else {
+      $('#landscape').removeClass('hidden');
+      $('#portrait').addClass('hidden');
+    }
+
     if (screen.lockOrientation) {
       return screen.lockOrientation(ori + '-primary');
     } else {
       return screen.orientation.lock(ori + '-primary');
     }
+  } else {
+    // update menu
+    $('#portrait').addClass('hidden');
+    $('#landscape').addClass('hidden');
   }
 };
 
@@ -117,20 +131,22 @@ $(window).on('fullscreenchange mozfullscreenchange webkitfullscreenchange ' +
   lockOrientation();
 });
 
+// orientation
 $('#portrait').click(function() {
-  ori = 'portrait';
-  lockOrientation();
-});
-$('#landscape').click(function() {
   ori = 'landscape';
   lockOrientation();
 });
+$('#landscape').click(function() {
+  ori = 'portrait';
+  lockOrientation();
+});
+
+// modes
 $('#touch-ctrl').click(function() {
   if (this.checked) {
     control = 'touch';
   }
 });
-
 $('#motion-ctrl').click(function() {
   if (this.checked) {
     control = 'motion';
