@@ -1,6 +1,6 @@
 Air Mouse and touchpad with full web technology
 
-[![Build Status](https://travis-ci.org/gasolin/webbymouse.png)](https://travis-ci.org/gasolin/webbymouse) [![david-dm](https://david-dm.org/gasolin/webbymouse.png)](https://david-dm.org/gasolin/webbymouse) [![devDependency Status](https://david-dm.org/gasolin/webbymouse/dev-status.svg)](https://david-dm.org/gasolin/webbymouse#info=devDependencies)
+[![Build Status](https://travis-ci.org/gasolin/webbymouse.png)](https://travis-ci.org/gasolin/webbymouse) [![Dependency Status](https://gemnasium.com/gasolin/webbymouse.svg)](https://gemnasium.com/gasolin/webbymouse)
 
 # Overview
 
@@ -13,16 +13,16 @@ In client side `index.html`, just call emitMouse to update the mouse position.
 
 ## Mode
 
-### Touchpad mode
+### Touchpad mode (Mouse Control)
 
 * Use `Single finger touch` will let you move the mouse.
 * Use `Double finger touch` will let you scroll the content.
 * Use `Single finger tap` will let you simulate left click.
 * Use `Double finger tap` will let you simulate right click.
 
-### Air mouse mode
+### Air mouse mode (Motion Control)
 
-TBD
+Tap menu then choose `Motion Control`, then you can wave your mobile device to control the mouse.
 
 ### Present mode
 
