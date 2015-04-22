@@ -65,8 +65,6 @@ io.on('connection', function(socket) {
     } else if (pos.cmd == 'click') {
       robot.mouseClick();
       // robot.typeString(msg);
-      //Press enter.
-      // robot.keyTap("enter");
     } else if (pos.cmd == 'rightclick') {
       robot.mouseClick('right');
     } else if (pos.cmd == 'scrollstart') {
@@ -77,6 +75,10 @@ io.on('connection', function(socket) {
       robot.mouseToggle('down', 'left');
     } else if (pos.cmd == 'dragend') {
       robot.mouseToggle('up', 'left');
+    } else if (pos.cmd == 'right') {
+      robot.keyTap("right");
+    } else if (pos.cmd == 'left') {
+      robot.keyTap("left");
     }
     // send to everyone
     //io.emit('mouse', pos);

@@ -60,7 +60,7 @@ mc.add(new Hammer.Pan({event: 'drag', threshold: 0, pointers: 3,
 mc.add(new Hammer.Tap({event: 'click', pointers: 1}));
 mc.add(new Hammer.Tap({event: 'rightclick', pointers: 2}));
 mc.on('movestart moveend moveup movedown moveleft moveright', function(e) {
-  if (control == 'touch') {
+  if (control !== 'motion') {
     handlePan('move', e);
   }
 });
@@ -73,11 +73,19 @@ mc.on('dragstart dragend dragup dragdown dragleft dragright', function(e) {
 });
 mc.on('click', function(e) {
   console.info('click');
-  emitMouse(0, 0, 'click');
+  if (control === 'present') {
+    emitMouse(0, 0, 'right');
+  } else {
+    emitMouse(0, 0, 'click');
+  }
 });
 mc.on('rightclick', function(e) {
   console.info('rightclick');
-  emitMouse(0, 0, 'rightclick');
+  if (control === 'present') {
+    emitMouse(0, 0, 'left');
+  } else {
+    emitMouse(0, 0, 'rightclick');
+  }
 });
 
 // menu functions
@@ -147,12 +155,21 @@ $('#touch-ctrl').click(function() {
   // update menu
   $('#touch-ctrl').addClass('active');
   $('#motion-ctrl').removeClass('active');
+  $('#present-ctrl').removeClass('active');
 });
 $('#motion-ctrl').click(function() {
   control = 'motion';
   // update menu
   $('#touch-ctrl').removeClass('active');
   $('#motion-ctrl').addClass('active');
+  $('#present-ctrl').removeClass('active');
+});
+$('#present-ctrl').click(function() {
+  control = 'present';
+  // update menu
+  $('#touch-ctrl').removeClass('active');
+  $('#motion-ctrl').removeClass('active');
+  $('#present-ctrl').addClass('active');
 });
 
 $('#about').click(function() {
@@ -163,7 +180,7 @@ $('#about').click(function() {
 });
 
 window.addEventListener('deviceorientation', function(e) {
-  if (control == 'motion') {
+  if (control === 'motion') {
     var x = e.gamma;
     var y = e.beta;
     y = (y > 90) ? 90 : y;

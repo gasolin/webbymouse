@@ -26,8 +26,10 @@ Tap menu then choose `Motion Control`, then you can wave your mobile device to c
 
 ### Present mode
 
-TBD
+Tap menu then choose `Presentation Control`, then you can control the presentation by:
 
+* Use `Single finger tap` will let you simulate right arrow.
+* Use `Double finger tap` will let you simulate left arrow.
 
 # How to Contribute
 
