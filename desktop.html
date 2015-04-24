@@ -16,10 +16,22 @@
     <!-- endbuild -->
   </head>
   <body fullbleed unresolved class="hidden">
-    <header id="header" class="navbar navbar-fixed-top shadow-z-3">
-      <a class="navbar-brand" href="#" data-l10n-id="projectName">Webby Mouse</a>
-      <ul class="nav navbar-nav pull-left">
-      </ul>
+    <header class="navbar navbar-inverse navbar-fixed-top shadow-z-2" role="navigation">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle pull-left" data-toggle="collapse" data-target="#pushMenu">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <!-- <i class="mdi-navigation-menu"></i> -->
+        </button>
+        <a class="navbar-brand" href="#" data-l10n-id="projectName">Webby Mouse</a>
+      </div>
+      <div class="collapse navbar-collapse" id="pushMenu">
+        <ul class="nav navbar-nav">
+          <li><a href="#" id="passcode"><i class="mdi-notification-vpn-lock"></i> Pass Code</a></li>
+        </ul>
+      </div>
     </header>
     <section id="content" class="well">
       <!-- Add your site or application content here -->

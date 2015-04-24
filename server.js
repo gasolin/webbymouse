@@ -6,6 +6,7 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var robot = require('robotjs');
+var config = require('./public/js/config.js');
 
 var screenWidth = 1440;
 var screenHeight = 900;
@@ -42,6 +43,11 @@ io.on('connection', function(socket) {
   });
 
   socket.on('mouse', function(pos) {
+    if (pos.pw) {
+      if (config.passcode !== pos.pw) {
+        return;
+      }
+    }
     if (pos.cmd == 'move' || pos.cmd == 'scroll' || pos.cmd == 'drag') {
       mouse = robot.getMousePos();
       //console.log("Mouse is at x:" + mouse.x + " y:" + mouse.y);

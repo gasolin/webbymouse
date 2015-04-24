@@ -7,8 +7,10 @@ $(document).ready(function() {
   require('./server.js');
   var gui = require('nw.gui');
   var os = require('os');
+  var config = require('./public/js/config.js');
 
   var desc = document.getElementById('desc');
+  var pw = document.getElementById('passcode');
 
   // show ip address
   var ifaces = os.networkInterfaces();
@@ -84,5 +86,9 @@ $(document).ready(function() {
     }
   }));
   tray.menu = menu;
+
+  pw.addEventListener('click', function() {
+    config.passcode = prompt('Enter a passcode');
+  });
 });
 

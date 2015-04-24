@@ -8,8 +8,9 @@ var delta = null;
 var moving = false;
 var ori = 'portrait';
 var control = 'touch';
+var passcode = '';
 
-var pos = {x: 0, y: 0, cmd: null};
+var pos = {x: 0, y: 0, cmd: null, pw: ''};
 /**
  * pass `pos` object to socket.emit('mouse', pos) function
  *
@@ -22,6 +23,7 @@ var emitMouse = function(x, y, cmd) {
   pos.x = x;
   pos.y = y;
   pos.cmd = cmd;
+  pos.pw = passcode;
 
   socket.emit('mouse', pos);
 };
@@ -170,6 +172,10 @@ $('#present-ctrl').click(function() {
   $('#touch-ctrl').removeClass('active');
   $('#motion-ctrl').removeClass('active');
   $('#present-ctrl').addClass('active');
+});
+
+$('#passcode').click(function() {
+  passcode = prompt('Enter a passcode');
 });
 
 $('#about').click(function() {
