@@ -11,7 +11,7 @@ The desktop side `desktop.html` includes `server.js` and provide the connection 
 In client side `index.html`, just call emitMouse to update the mouse position.
 
 
-## Feature
+## Features
 
 ### Touchpad mode (Mouse Control)
 
@@ -55,7 +55,7 @@ If you feel Webby Mouse is useful, please spread the word on social media!
 * Shared
   * App Template: [Webapplate](https://github.com/webapplate/webapplate)
   * UI: [Bootstrap](https://github.com/twbs/bootstrap) CSS framework
-  * Real time communication: [socket.io](http://socket.io/)
+  * Web socket: [socket.io](http://socket.io/) Real time communication
 
 ## Setup
 
@@ -99,5 +99,5 @@ $ npm install --production
 $ nwbuild -p osx64 webbymouse
 ```
 
-Currently MacOS is the only support platform.
+Due to underlying robotjs mouse library, currently MacOS is the only support platform.
 
