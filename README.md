@@ -2,14 +2,13 @@ Air Mouse and touchpad with full web technology.
 
 [![Build Status](https://travis-ci.org/gasolin/webbymouse.png)](https://travis-ci.org/gasolin/webbymouse) [![Dependency Status](https://gemnasium.com/gasolin/webbymouse.svg)](https://gemnasium.com/gasolin/webbymouse)
 
-# Overview
+# Install
 
-The server side `server.js` manage the mouse position change, the client side send position offset to server. 
+Unzip [downloaded zip](https://github.com/gasolin/webbymouse/releases), tap to open it. Then you have a desktop with mouse server enabled.
 
-The desktop side `desktop.html` includes `server.js` and provide the connection instruction and system tray.
+![Imgur](http://i.imgur.com/y4OSyqy.png)
 
-In client side `index.html`, just call emitMouse to update the mouse position.
-
+Open your mobile browser by scanning the QRCode or enter the URL, then you are able to control your desktop via browser.
 
 ## Features
 
@@ -74,6 +73,14 @@ $ node server.js
 ```
 
 To host the mouse server on desktop.
+
+## Code structure
+
+The server side `server.js` manage the mouse position change, the client side send position offset to server. 
+
+The desktop side `desktop.html` includes `server.js` and provide the connection instruction and system tray.
+
+In client side `index.html`, just call emitMouse to update the mouse position.
 
 
 ## Build for Desktop
