@@ -1,4 +1,4 @@
-Air Mouse and touchpad with full web technology
+Air Mouse and touchpad with full web technology.
 
 [![Build Status](https://travis-ci.org/gasolin/webbymouse.png)](https://travis-ci.org/gasolin/webbymouse) [![Dependency Status](https://gemnasium.com/gasolin/webbymouse.svg)](https://gemnasium.com/gasolin/webbymouse)
 
@@ -11,7 +11,7 @@ The desktop side `desktop.html` includes `server.js` and provide the connection 
 In client side `index.html`, just call emitMouse to update the mouse position.
 
 
-## Mode
+## Feature
 
 ### Touchpad mode (Mouse Control)
 
@@ -30,6 +30,11 @@ Tap menu then choose `Presentation Control`, then you can control the presentati
 
 * Use `Single finger tap` will let you simulate right arrow.
 * Use `Double finger tap` will let you simulate left arrow.
+
+### Passcode protection
+
+On desktop and on client side browser, tap menu then choose `Passcode` to enter same string on prompt, then you can make sure the mouse is only accessible by you. (The passcode is not remembered and should re-entered when you restart the desktop next time)
+
 
 # How to Contribute
 
