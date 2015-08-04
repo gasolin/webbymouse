@@ -88,13 +88,13 @@ In client side `index.html`, just call emitMouse to update the mouse position.
 You need install node-webkit-builder first
 
 ```
-$ npm install node-webkit-builder -g
+$ npm install nw-builder -g
 ```
 
 You have to check nw.js website and use same io.js version as nw.js did.
 
 ```
-$ nvm install iojs-1.2.1
+$ nvm install iojs-1.2.0
 $ nvm use iojs
 ```
 
@@ -103,7 +103,7 @@ Clone a new repository and run following commands:
 
 ```
 $ npm install --production
-$ nwbuild -p osx64 webbymouse
+$ nwbuild -p osx64 webbymouse -v 0.12.3
 ```
 
 Due to underlying robotjs mouse library, currently MacOS is the only support platform.
